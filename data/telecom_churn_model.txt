@@ -1,0 +1,273 @@
+IBM TELECOM CHURN DATASET — COLUMN / FEATURE DESCRIPTION
+==================================================================
+
+File name: "telecom_churn_model.csv"
+Rows (customers): 7,043
+Columns (variables): 28
+
+SURVIVAL-ANALYSIS INTERPRETATION
+------------------------------------------------------------------
+Telecom context                 Survival-analysis context
+Customer churns                Event / death
+Customer stays                 Surviving / event not observed
+tenure_in_months               Survival or follow-up time
+churn_label = Yes              Event occurred (recommended event code = 1)
+churn_label = No               Right-censored / no churn observed (recommended event code = 0)
+
+Important statistical note:
+In survival analysis, a customer with churn_label = No is normally treated as
+RIGHT-CENSORED at tenure_in_months. This means the customer was still active
+when observation ended; it does not mean the customer can never churn later.
+
+Suggested R-style survival object:
+  Surv(time = tenure_in_months, event = churn_event)
+where:
+  churn_event = 1 if churn_label == 'Yes'
+  churn_event = 0 if churn_label == 'No'
+
+OUTCOME SUMMARY
+------------------------------------------------------------------
+churn_label = No: 5,174 customers (73.5%)
+churn_label = Yes: 1,869 customers (26.5%)
+tenure_in_months range: 1 to 72 months
+
+COLUMN / FEATURE DATA DICTIONARY
+==================================================================
+
+DEMOGRAPHIC / HOUSEHOLD FEATURES
+--------------------------------
+
+gender
+  Role/description : Customer gender.
+  Data type        : Categorical / text
+  Observed values  : Male, Female
+  Missing values   : 0
+
+age
+  Role/description : Customer age in years.
+  Data type        : Integer / numeric
+  Observed values  : range 19 to 80 (62 unique values)
+  Missing values   : 0
+
+senior_citizen
+  Role/description : Whether the customer is classified as a senior citizen (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : Yes, No
+  Missing values   : 0
+
+married
+  Role/description : Whether the customer is married (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+dependents
+  Role/description : Whether the customer has dependents (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+number_of_dependents
+  Role/description : Number of dependents associated with the customer.
+  Data type        : Integer / numeric
+  Observed values  : 0, 1, 3, 2, 5, 4, 6, 7, 8, 9
+  Missing values   : 0
+
+REFERRAL / MARKETING FEATURES
+-----------------------------
+
+referred_a_friend
+  Role/description : Whether the customer referred a friend to the telecom provider (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+number_of_referrals
+  Role/description : Number of customer referrals.
+  Data type        : Integer / numeric
+  Observed values  : range 0 to 11 (12 unique values)
+  Missing values   : 0
+
+offer
+  Role/description : Promotional offer associated with the customer. Blank values are present; do not automatically interpret blank as 'No Offer' without confirming the source documentation.
+  Data type        : Categorical / text
+  Observed values  : Offer E, Offer D, Offer C, Offer B, Offer A
+  Missing values   : 3,877
+
+PHONE-SERVICE FEATURES
+----------------------
+
+phone_service
+  Role/description : Whether the customer has phone service (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+avg_monthly_long_distance_charges
+  Role/description : Average monthly long-distance telephone charges.
+  Data type        : Numeric / continuous
+  Observed values  : range 0.0 to 49.99 (3584 unique values)
+  Missing values   : 0
+
+multiple_lines
+  Role/description : Whether the customer has multiple phone lines (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+INTERNET / DIGITAL-SERVICE FEATURES
+-----------------------------------
+
+internet_service
+  Role/description : Whether the customer has internet service (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : Yes, No
+  Missing values   : 0
+
+avg_monthly_gb_download
+  Role/description : Average monthly internet data downloaded, measured in GB.
+  Data type        : Integer / numeric
+  Observed values  : range 0 to 85 (50 unique values)
+  Missing values   : 0
+
+online_security
+  Role/description : Whether the customer has an online security service (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+online_backup
+  Role/description : Whether the customer has an online backup service (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+device_protection_plan
+  Role/description : Whether the customer has a device protection plan (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : Yes, No
+  Missing values   : 0
+
+premium_tech_support
+  Role/description : Whether the customer has premium technical support (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+streaming_tv
+  Role/description : Whether the customer uses the streaming TV service (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+streaming_movies
+  Role/description : Whether the customer uses the streaming movies service (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : Yes, No
+  Missing values   : 0
+
+streaming_music
+  Role/description : Whether the customer uses the streaming music service (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+unlimited_data
+  Role/description : Whether the customer has an unlimited data plan (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : No, Yes
+  Missing values   : 0
+
+CONTRACT / BILLING FEATURES
+---------------------------
+
+contract
+  Role/description : Customer contract term: Month-to-Month, One Year, or Two Year.
+  Data type        : Categorical / text
+  Observed values  : Month-to-Month, One Year, Two Year
+  Missing values   : 0
+
+paperless_billing
+  Role/description : Whether the customer uses paperless billing (Yes/No).
+  Data type        : Categorical / text
+  Observed values  : Yes, No
+  Missing values   : 0
+
+payment_method
+  Role/description : Customer payment method.
+  Data type        : Categorical / text
+  Observed values  : Bank Withdrawal, Credit Card, Mailed Check
+  Missing values   : 0
+
+CUSTOMER EXPERIENCE FEATURE
+---------------------------
+
+satisfaction_score
+  Role/description : Customer satisfaction score on the observed 1–5 scale.
+  Data type        : Integer / numeric
+  Observed values  : 3, 2, 1, 4, 5
+  Missing values   : 0
+
+SURVIVAL-ANALYSIS VARIABLES
+---------------------------
+
+churn_label
+  Role/description : Observed churn status. Yes = customer churned; No = customer had not churned at the end of observation.
+  Data type        : Categorical / text
+  Observed values  : Yes, No
+  Missing values   : 0
+
+tenure_in_months
+  Role/description : Number of months the customer has remained with the telecom provider; used as the survival/follow-up time.
+  Data type        : Integer / numeric
+  Observed values  : range 1 to 72 (72 unique values)
+  Missing values   : 0
+
+MODELING ROLE SUMMARY
+==================================================================
+Primary survival time:
+  tenure_in_months
+
+Primary survival event:
+  churn_label -> recode Yes = 1 (churn/event), No = 0 (censored/staying)
+
+Candidate explanatory features / covariates:
+  - gender
+  - age
+  - senior_citizen
+  - married
+  - dependents
+  - number_of_dependents
+  - referred_a_friend
+  - number_of_referrals
+  - offer
+  - phone_service
+  - avg_monthly_long_distance_charges
+  - multiple_lines
+  - internet_service
+  - avg_monthly_gb_download
+  - online_security
+  - online_backup
+  - device_protection_plan
+  - premium_tech_support
+  - streaming_tv
+  - streaming_movies
+  - streaming_music
+  - unlimited_data
+  - contract
+  - paperless_billing
+  - payment_method
+  - satisfaction_score
+
+DATA-QUALITY NOTES
+==================================================================
+Total missing cells: 3,877
+  - offer: 3,877 missing (55.0%)
+All other columns have 0 missing values in the uploaded file.
+
+SURVIVAL-ANALYSIS CAUTION
+==================================================================
+Variables such as satisfaction_score may be strongly associated with churn,
+but before fitting Cox or other survival models, confirm that each predictor
+was measured before (or during) the customer's at-risk period and not only
+after churn. Predictors measured after the outcome can cause information leakage.
