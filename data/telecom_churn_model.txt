@@ -67,11 +67,6 @@ dependents
   Observed values  : No, Yes
   Missing values   : 0
 
-number_of_dependents
-  Role/description : Number of dependents associated with the customer.
-  Data type        : Integer / numeric
-  Observed values  : 0, 1, 3, 2, 5, 4, 6, 7, 8, 9
-  Missing values   : 0
 
 REFERRAL / MARKETING FEATURES
 -----------------------------
@@ -91,8 +86,8 @@ number_of_referrals
 offer
   Role/description : Promotional offer associated with the customer. Blank values are present; do not automatically interpret blank as 'No Offer' without confirming the source documentation.
   Data type        : Categorical / text
-  Observed values  : Offer E, Offer D, Offer C, Offer B, Offer A
-  Missing values   : 3,877
+  Observed values  : Offer E, Offer D, Offer C, Offer B, Offer A, Offer None
+  Missing values   : 0
 
 PHONE-SERVICE FEATURES
 ----------------------
@@ -202,11 +197,7 @@ payment_method
 CUSTOMER EXPERIENCE FEATURE
 ---------------------------
 
-satisfaction_score
-  Role/description : Customer satisfaction score on the observed 1–5 scale.
-  Data type        : Integer / numeric
-  Observed values  : 3, 2, 1, 4, 5
-  Missing values   : 0
+
 
 SURVIVAL-ANALYSIS VARIABLES
 ---------------------------
@@ -232,12 +223,12 @@ Primary survival event:
   churn_label -> recode Yes = 1 (churn/event), No = 0 (censored/staying)
 
 Candidate explanatory features / covariates:
+  - customer_id
   - gender
   - age
   - senior_citizen
   - married
   - dependents
-  - number_of_dependents
   - referred_a_friend
   - number_of_referrals
   - offer
@@ -257,17 +248,13 @@ Candidate explanatory features / covariates:
   - contract
   - paperless_billing
   - payment_method
-  - satisfaction_score
+
 
 DATA-QUALITY NOTES
 ==================================================================
-Total missing cells: 3,877
-  - offer: 3,877 missing (55.0%)
-All other columns have 0 missing values in the uploaded file.
+Total missing cells: 0
+
 
 SURVIVAL-ANALYSIS CAUTION
 ==================================================================
-Variables such as satisfaction_score may be strongly associated with churn,
-but before fitting Cox or other survival models, confirm that each predictor
-was measured before (or during) the customer's at-risk period and not only
-after churn. Predictors measured after the outcome can cause information leakage.
+Predictors measured after the outcome can cause information leakage.
